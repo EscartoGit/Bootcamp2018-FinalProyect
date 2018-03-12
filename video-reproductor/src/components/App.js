@@ -18,6 +18,7 @@ class App extends Component {
     this.state = { videos: null }
 
     this.handleSearch = Debounce(this.handleSearch.bind(this), 1000)
+    this.handleSearch('hola')
   }
 
   handleSearch(searchTerm){

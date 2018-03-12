@@ -18,6 +18,7 @@ function Youtube(data) {
             xhr.open('GET', url);
 
             xhr.onload = function () {
+                url = '';
                 if (xhr.status === 200) {
                     resolve(JSON.parse(xhr.responseText));
                 } else {
