@@ -1,50 +1,27 @@
 import React, {Component} from "react";
 import './../css/SearchBar.css';
-import YoutubeApi from './YoutubeApi.js'
+
 import logo from './../logo.png';
 
-const API_KEY = "AIzaSyAGDLCl4PnihPeLdNzB-GxjpAHpyM2rqGY";
 
-function debounce(func, wait, immediate) {
-    var timeout;
-    return function () {
-        var context = this,
-            args = arguments;
-        var later = function () {
-            timeout = null;
-            if (!immediate) 
-                func.apply(context, args);
-            };
-        var callNow = immediate && !timeout;
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-        if (callNow) 
-            func.apply(context, args);
-        };
-};
+
+
 
 class SearchBar extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            searchTerm: props.searchTerm
-        };
+
+        this.setSearchTerm = this.setSearchTerm.bind(this)
 
     }
-
-
-    setSearchTerm = debounce(searchTerm => {
-        this.setState({searchTerm})
-        console.log(YoutubeApi)
-        YoutubeApi({key: API_KEY, searchTerm})
-            .then((videos) => {
-                this.setState({videos})
-            })
-            .catch(function (reason) {
-                console.error(reason);
-            });
-
-    }, 1000)
+    setSearchTerm(searchTerm) {
+    
+        this.setState({ searchTerm })
+    
+        if (searchTerm != '') {
+          this.props.Search(searchTerm)
+        }
+      }
 
     render() {
         return (
@@ -56,13 +33,12 @@ class SearchBar extends Component {
                             <input
                                 type="text"
                                 onChange={e => {
-                                this.setSearchTerm(e.target.value)
+                                this.setSearchTerm(e.target.value.trim())
                             }}
                                 placeholder="Search.."
                                 name="search"/>
                         </form>
                     </div>
-                    <p>{this.state.searchTerm}</p>
                 </div>
             </div>
         );
