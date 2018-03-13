@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './../css/App.css';
 import './../css/bootstrap.min.css';
 
+
 import Description from './Descriptor.js';
 import Reproductor from './Reproductor.js';
 import SearchBar from './SearchBar.js'
@@ -21,7 +22,14 @@ class App extends Component {
 
     this.handleSearch = Debounce(this.handleSearch.bind(this), 1000)
 
+
+
     this.handleSearch('Globant');
+
+    this.handleVideos= this.handleVideos.bind(this);
+
+
+
   }
 
   formatJson(json){
@@ -32,38 +40,45 @@ class App extends Component {
         thumbnail:json.items[i].snippet.thumbnails.default.url,
         description:json.items[i].snippet.description,
         channelTitle:json.items[i].snippet.channelTitle,
+        id:json.items[i].id.videoId,
       }
       auxV.push(videos);
     }
     return auxV;
+
   }
 
   handleSearch(searchTerm){
     YoutubeApi({key: API_KEY, searchTerm})
-      .then((videos) => {
-          videos=this.formatJson(videos);
-          this.setState({videos})
-      })
-      .catch(function (reason) {
-          console.error(reason);
-      });
+    .then((videos) => {
+      videos=this.formatJson(videos);
+      this.setState({videos})
+    })
+    .catch(function (reason) {
+      console.error(reason);
+    });
+  }
+
+  handleVideos(selected){
+    console.log(selected);
+
   }
 
   render() {
-      return (
-        <div className="App">
-        <SearchBar Search={this.handleSearch} />
+    return (
+      <div className="App">
+      <SearchBar Search={this.handleSearch} />
 
-          <div className="col-xs-12">
-            <div className="col-xs-9"></div>
-            <div className="col-xs-3">
+      <div className="col-xs-12">
+      <div className="col-xs-9"></div>
+      <div className="col-xs-3">
 
-                <VideoList videos={this.state.videos}/>
+      {this.state.videos && <VideoList videos={this.state.videos} handleVideos={this.handleVideos}/>}
 
-            </div>
-          </div>
-        </div>
-      );
+      </div>
+      </div>
+      </div>
+    );
 
 
   }

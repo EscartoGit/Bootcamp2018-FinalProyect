@@ -5,13 +5,13 @@ function debounce(func, wait, immediate) {
             args = arguments;
         var later = function () {
             timeout = null;
-            if (!immediate) 
+            if (!immediate)
                 func.apply(context, args);
             };
         var callNow = immediate && !timeout;
         clearTimeout(timeout);
         timeout = setTimeout(later, wait);
-        if (callNow) 
+        if (callNow)
             func.apply(context, args);
         };
 };

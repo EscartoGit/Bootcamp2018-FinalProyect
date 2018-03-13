@@ -12,6 +12,7 @@ function Youtube(data) {
         type: 'video'
     };
     url += RootUrl + formatParams(params)
+
     let callPromise = new Promise((resolve, reject) => {
         if (url) {
             xhr.open('GET', url);
@@ -39,4 +40,5 @@ function formatParams(params) {
         })
         .join("&")
 }
+
 export default Youtube;
