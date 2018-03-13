@@ -1,4 +1,3 @@
-
 import React, {Component} from 'react';
 var xhr = new XMLHttpRequest();
 
@@ -13,6 +12,7 @@ function Youtube(data) {
         type: 'video'
     };
     url += RootUrl + formatParams(params)
+
     let callPromise = new Promise((resolve, reject) => {
         if (url) {
             xhr.open('GET', url);
