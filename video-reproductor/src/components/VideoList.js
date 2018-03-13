@@ -4,7 +4,6 @@ import Video from './Video';
 class VideoList extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props)
   }
 
   render() {

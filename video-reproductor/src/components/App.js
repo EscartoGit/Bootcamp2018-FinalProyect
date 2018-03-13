@@ -52,9 +52,9 @@ class App extends Component {
       this.setState({videos})
       this.handleVideos(videos[0])
     })
-      .catch(function (reason) {
-        console.error(reason);
-      });
+    .catch(function (reason) {
+      console.error(reason);
+    });
   }
 
   handleVideos(selected) {
