@@ -18,7 +18,7 @@ class Reproductor extends Component{
           return(
               <div className="reproductor-container">
                  <div className="video-container">
-                      {this.props.select && <iframe src={urlVideo} allow="autoplay; encrypted-media" allowfullscreen></iframe>}
+                    <iframe src={urlVideo} allow="autoplay; encrypted-media"></iframe>
                  </div>
                  <div className="video-info">
                       <h4>{this.props.select.title}</h4>

@@ -3,10 +3,6 @@ import './../css/SearchBar.css';
 
 import logo from './../logo.png';
 
-
-
-
-
 class SearchBar extends Component {
     constructor(props) {
         super(props);
@@ -16,12 +12,12 @@ class SearchBar extends Component {
     }
     setSearchTerm(searchTerm) {
 
-        this.setState({ searchTerm })
+        this.setState({searchTerm})
 
         if (searchTerm != '') {
-          this.props.Search(searchTerm)
+            this.props.Search(searchTerm)
         }
-      }
+    }
 
     render() {
         return (
@@ -29,7 +25,6 @@ class SearchBar extends Component {
                 <div className="topnav">
                     <img src={logo} className="App-logo" alt="logo"/>
                     <div className="search-container">
-                        <form>
                             <input
                                 type="text"
                                 onChange={e => {
@@ -37,7 +32,6 @@ class SearchBar extends Component {
                             }}
                                 placeholder="Search.."
                                 name="search"/>
-                        </form>
                     </div>
                 </div>
             </div>
