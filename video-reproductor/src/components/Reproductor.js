@@ -43,7 +43,7 @@ class Reproductor extends Component {
                             onChange={this.handleCheck}
                             defaultChecked={this.state.checked}/>
                     </div>
-                    <div>Loop Video</div>
+                    <div>Repeat video</div>
                 </div>
                 <div className="video-info">
                     <p>

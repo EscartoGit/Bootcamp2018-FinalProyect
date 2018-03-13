@@ -20,10 +20,7 @@ class VideoList extends Component {
                   description={i.description}
                   channelTitle={i.channelTitle}
                   id={i.id}
-                  handleVideos={this
-                  .props
-                  .handleVideos
-                  .bind(this)}/>
+                  handleVideos={this.props.handleVideos.bind(this)}/>
               );
             })}
 
