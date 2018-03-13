@@ -47,14 +47,14 @@ class App extends Component {
 
   handleSearch(searchTerm) {
     YoutubeApi({key: API_KEY, searchTerm})
-    .then((videos) => {
-      videos = this.formatJson(videos);
-      this.setState({videos})
-      this.handleVideos(videos[0])
-    })
-    .catch(function (reason) {
-      console.error(reason);
-    });
+      .then((videos) => {
+        videos = this.formatJson(videos);
+        this.setState({videos})
+        this.handleVideos(videos[0])
+      })
+      .catch(function (reason) {
+        console.error(reason);
+      });
   }
 
   handleVideos(selected) {
