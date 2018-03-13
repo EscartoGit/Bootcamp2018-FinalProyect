@@ -1,66 +1,44 @@
 import React, {Component} from "react";
-import './../css/App.css';
-import YoutubeApi from './YoutubeApi.js'
-//import logo from './../logo.png';
+import './../css/SearchBar.css';
 
-const API_KEY = "AIzaSyAGDLCl4PnihPeLdNzB-GxjpAHpyM2rqGY";
+import logo from './../logo.png';
 
-function debounce(func, wait, immediate) {
-    var timeout;
-    return function () {
-        var context = this,
-            args = arguments;
-        var later = function () {
-            timeout = null;
-            if (!immediate)
-                func.apply(context, args);
-            };
-        var callNow = immediate && !timeout;
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-        if (callNow)
-            func.apply(context, args);
-        };
-};
+
+
+
 
 class SearchBar extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            searchTerm: props.searchTerm
-        };
+
+        this.setSearchTerm = this.setSearchTerm.bind(this)
 
     }
+    setSearchTerm(searchTerm) {
 
+        this.setState({ searchTerm })
 
-    setSearchTerm = debounce(searchTerm => {
-        this.setState({searchTerm})
-        YoutubeApi({key: API_KEY, searchTerm})
-            .then((videos) => {
-                this.setState({videos})
-            })
-            .catch(function (reason) {
-                console.error(reason);
-            });
-
-    }, 1000)
+        if (searchTerm != '') {
+          this.props.Search(searchTerm)
+        }
+      }
 
     render() {
         return (
             <div className="search-bar">
                 <div className="topnav">
+                    <img src={logo} className="App-logo" alt="logo"/>
                     <div className="search-container">
                         <form>
                             <input
                                 type="text"
                                 onChange={e => {
-                                this.setSearchTerm(e.target.value)
+                                this.setSearchTerm(e.target.value.trim())
                             }}
                                 placeholder="Search.."
                                 name="search"/>
                         </form>
                     </div>
-                    <p>{this.state.searchTerm}</p>
                 </div>
             </div>
         );

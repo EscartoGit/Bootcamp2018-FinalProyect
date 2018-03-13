@@ -1,0 +1,38 @@
+.topnav {
+  overflow: hidden;
+  height: 3em;
+  border-bottom: 1px solid #ccc;
+  box-shadow: 0px 1px #888888;
+}
+
+
+.topnav .search-container {
+  padding-right: 50em;
+  float: right;
+}
+
+.topnav input[type=text] {
+  border-radius: 5px;
+  border: 1px solid#ccc;
+  width: 25em;
+  padding: 6px;
+  margin-top: 5px;
+  font-size: 17px;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav .search-container {
+    float: none;
+  }
+  .topnav a, .topnav input[type=text], .topnav .search-container button {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+  .topnav input[type=text] {
+    border: 1px solid #ccc;  
+  }
+}
