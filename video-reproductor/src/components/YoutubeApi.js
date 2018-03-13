@@ -12,12 +12,12 @@ function Youtube(data) {
         type: 'video'
     };
     url += RootUrl + formatParams(params)
-
     let callPromise = new Promise((resolve, reject) => {
         if (url) {
             xhr.open('GET', url);
 
             xhr.onload = function () {
+                url = '';
                 if (xhr.status === 200) {
                     resolve(JSON.parse(xhr.responseText));
                 } else {
