@@ -27,7 +27,7 @@ class App extends Component {
 
     this.handleVideos = this.handleVideos.bind(this);
 
-    
+
   }
 
   formatJson(json) {
@@ -47,34 +47,45 @@ class App extends Component {
 
   handleSearch(searchTerm) {
     YoutubeApi({key: API_KEY, searchTerm})
-      .then((videos) => {
-        videos = this.formatJson(videos);
-        this.setState({videos})
-        this.handleVideos(videos[0])
-      })
+    .then((videos) => {
+      videos = this.formatJson(videos);
+      this.setState({videos})
+      this.handleVideos(videos[0])
+    })
 
-      .catch(function (reason) {
-        console.error(reason);
-      });
+    .catch(function (reason) {
+      console.error(reason);
+    });
   }
-
 
   handleVideos(selected) {
     if (selected) {
       this.setState({select: selected});
+      let i = document.getElementsByClassName("selected");
+      if (i[0]!==undefined) {
+          i[0].classList.remove("selected");
+      }
+      document.getElementById(selected.id).classList.add("selected");
     }
+
   }
 
   render() {
     return (
       <div className="App">
-        <SearchBar Search={this.handleSearch}/>
-
-
-        <div className="col-xs-12">
-          <div className="col-xs-9">{this.state.select && <Reproductor select={this.state.select}/>}</div>
-          <div className="col-xs-3">
-            {this.state.videos && <VideoList videos={this.state.videos} handleVideos={this.handleVideos}/>}
+        <div className="container-fluid pdrl0">
+          <SearchBar Search={this.handleSearch}/>
+        </div>
+        <div className="container">
+          <div className="row">
+            <div id="pageContainer" className="col-xs-12">
+              <div className="col-xs-12 col-md-7">
+                {this.state.select && <Reproductor select={this.state.select}/>}
+              </div>
+              <div className="col-xs-12 col-md-5 videoList">
+                {this.state.videos && <VideoList videos={this.state.videos} handleVideos={this.handleVideos}/>}
+              </div>
+            </div>
           </div>
         </div>
       </div>

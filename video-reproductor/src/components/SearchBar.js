@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import './../css/SearchBar.css';
 
 import logo from './../logo.png';
 
@@ -20,25 +19,29 @@ class SearchBar extends Component {
         }
     }
 
-    render() {
-        return (
-            <div className="search-bar">
-                <div className="topnav">
-                    <img src={logo} className="App-logo" alt="logo"/>
-                    <div className="search-container">
-                            <input
-                                type="text"
-                                onChange={e => {
-                                this.setSearchTerm(e.target.value.trim())
-                            }}
-                                placeholder="Search.."
-                                name="search"/>
-                    </div>
-                </div>
-            </div>
-        );
 
-    }
+  render() {
+    return (
+      <div className="search-bar">
+      <div className="topnav col-xs-12">
+      <div className="col-xs-0 col-sm-1 col-md-2 pdrl0">
+      <img src={logo} className="App-logo " alt="logo"/>
+      </div>
+      <div className="search-container col-xs-12 col-sm-11 col-md-6">
+      <input
+      type="text"
+      onChange={e => {
+        this.setSearchTerm(e.target.value.trim())
+      }}
+      placeholder="Search.."
+      name="search"/>
+      </div>
+      <div className="col-xs-0 col-md-5"></div>
+      </div>
+      </div>
+    );
+
+  }
 }
 
 export default SearchBar;
