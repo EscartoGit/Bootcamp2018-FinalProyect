@@ -26,6 +26,7 @@ class App extends Component {
     this.handleSearch('Globant');
 
     this.handleVideos = this.handleVideos.bind(this);
+
     
   }
 
@@ -50,11 +51,13 @@ class App extends Component {
         videos = this.formatJson(videos);
         this.setState({videos})
         this.handleVideos(videos[0])
-    })
+      })
+
       .catch(function (reason) {
         console.error(reason);
       });
   }
+
 
   handleVideos(selected) {
     if (selected) {
@@ -67,12 +70,11 @@ class App extends Component {
       <div className="App">
         <SearchBar Search={this.handleSearch}/>
 
+
         <div className="col-xs-12">
           <div className="col-xs-9">{this.state.select && <Reproductor select={this.state.select}/>}</div>
           <div className="col-xs-3">
-
             {this.state.videos && <VideoList videos={this.state.videos} handleVideos={this.handleVideos}/>}
-
           </div>
         </div>
       </div>

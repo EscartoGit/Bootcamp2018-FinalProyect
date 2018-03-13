@@ -40,4 +40,6 @@ function formatParams(params) {
         })
         .join("&")
 }
+
 export default Youtube;
+
