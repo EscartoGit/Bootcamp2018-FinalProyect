@@ -4,6 +4,7 @@ import Video from './Video';
 class VideoList extends Component{
   constructor(props){
     super(props);
+    console.log(this.props)
   }
 
   render(){
@@ -28,7 +29,7 @@ class VideoList extends Component{
         </div>
       );
     }else{
-      <div>faltan</div>
+      <div>Error carga de lista</div>
     }
 
   }
