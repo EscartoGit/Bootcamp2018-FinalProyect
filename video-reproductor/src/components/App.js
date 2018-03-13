@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import './../css/App.css';
 
 import './../css/bootstrap.min.css';
+
+import './../css/App.css';
 
 import Reproductor from './Reproductor.js';
 import SearchBar from './SearchBar.js'
@@ -27,7 +28,6 @@ class App extends Component {
 
     this.handleVideos = this.handleVideos.bind(this);
 
-
   }
 
   formatJson(json) {
@@ -52,18 +52,17 @@ class App extends Component {
       this.setState({videos})
       this.handleVideos(videos[0])
     })
-
-    .catch(function (reason) {
-      console.error(reason);
-    });
+      .catch(function (reason) {
+        console.error(reason);
+      });
   }
 
   handleVideos(selected) {
     if (selected) {
       this.setState({select: selected});
       let i = document.getElementsByClassName("selected");
-      if (i[0]!==undefined) {
-          i[0].classList.remove("selected");
+      if (i[0] !== undefined) {
+        i[0].classList.remove("selected");
       }
       document.getElementById(selected.id).classList.add("selected");
     }

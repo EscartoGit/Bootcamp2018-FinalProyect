@@ -1,35 +1,36 @@
 import React, {Component} from 'react';
 import Video from './Video';
 
-class VideoList extends Component{
-  constructor(props){
+class VideoList extends Component {
+  constructor(props) {
     super(props);
     console.log(this.props)
   }
 
-  render(){
-    if(this.props.videos){
-      return(
+  render() {
+    if (this.props.videos) {
+      return (
         <div>
-        {this.props.videos.map(i => {
-          return (
-
-            <Video
-            key={i.id}
-            thumbnail={i.thumbnail}
-            title={i.title}
-            description={i.description}
-            channelTitle={i.channelTitle}
-            id={i.id}
-            handleVideos={this.props.handleVideos.bind(this)}
-            />
-          );
-        })}
+          {this.props.videos.map(i => {
+              return (
+                <Video
+                  key={i.id}
+                  thumbnail={i.thumbnail}
+                  title={i.title}
+                  description={i.description}
+                  channelTitle={i.channelTitle}
+                  id={i.id}
+                  handleVideos={this
+                  .props
+                  .handleVideos
+                  .bind(this)}/>
+              );
+            })}
 
         </div>
       );
-    }else{
-      <div>Error carga de lista</div>
+    } else { 
+      <div> Error carga de lista </div>    
     }
 
   }
