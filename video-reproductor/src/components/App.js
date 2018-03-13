@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import './../css/App.css';
+
+
 import Description from './Descriptor.js';
 import Reproductor from './Reproductor.js';
 import SearchBar from './SearchBar.js'
@@ -18,33 +20,58 @@ class App extends Component {
     this.state = { videos: null }
 
     this.handleSearch = Debounce(this.handleSearch.bind(this), 1000)
-    this.handleSearch('hola')
+
+
+    this.handleSearch('Globant');
+    
+  }
+
+  formatJson(json){
+    let auxV=[];
+    for (var i = 0; i < json.items.length; i++) {
+      let videos={
+        title:json.items[i].snippet.title,
+        thumbnail:json.items[i].snippet.thumbnails.default.url,
+        description:json.items[i].snippet.description,
+        channelTitle:json.items[i].snippet.channelTitle,
+      }
+      auxV.push(videos);
+    }
+    return auxV;
+
   }
 
   handleSearch(searchTerm){
     YoutubeApi({key: API_KEY, searchTerm})
       .then((videos) => {
+          videos=this.formatJson(videos);
+
           this.setState({videos})
       })
       .catch(function (reason) {
           console.error(reason);
       });
   }
-  
+
+
   render() {
-    return (
-      <div className="App">
-      <SearchBar Search={this.handleSearch} />
-      {console.log(this.state)}
-        {/* <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Classes Added</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p> */}
-      </div>
-    );
+    console.log(this.state)
+      return (
+        <div className="App">
+        <SearchBar Search={this.handleSearch} />
+
+          <div className="col-xs-12">
+            <div className="col-xs-9"></div>
+            <div className="col-xs-3">
+
+               {this.state.videos && <VideoList videos={this.state.videos}/>}
+
+            </div>
+          </div>
+        </div>
+      );
+
+
   }
 }
 
